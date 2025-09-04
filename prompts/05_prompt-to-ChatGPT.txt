@@ -1,0 +1,328 @@
+here is a product requirements prompt. please read it and create a prompt that will be provided to firebase studio to create an app:
+
+===========================
+
+Product Requirements Prompt
+
+**Idea:**
+
+Friend Group Social Calendar
+Core Concept: A collaborative web calendar app designed for friend groups to coordinate social activities and prevent double-booking/forgotten plans.
+Target User: Friend groups planning social activities together
+Key Problem: People forgetting about plans or double-booking themselves despite group coordination
+
+**Core Features:**
+
+Shared calendar where all group members can view and create events
+Event creation with basics: title, date/time, location, description
+Invite-link based group formation with equal admin rights for all members
+Automated 1-hour email/browser push reminders for all events
+Social authentication (Google/Apple/Facebook login)
+
+**User Flow:**
+
+User creates account via social login
+Creates new group calendar or joins via invite link
+Group members can freely add/edit/view events
+System automatically sends reminders 1 hour before events
+All members receive notifications via email + browser push
+
+**Firebase Tools:**
+
+Firebase Auth (Google/email social login)
+Firestore (calendar events, user data, group memberships)
+Cloud Functions (notification logic, calendar operations)
+Firebase Hosting
+Vue.js + VueFire
+Future: Firebase Cloud Messaging (push)
+
+**Design Vibe:**
+
+Design Direction: Minimal, clean productivity tool aesthetic with friendly Care Bear color scheme and motifs
+Success Metric: Friends actually show up to plans they've made together
+
+===========================
+
+Perfect — thanks for sharing the product requirements prompt 🙌
+
+Here’s a Firebase Studio-ready app generation prompt based on your requirements:
+
+Prompt for Firebase Studio:
+
+Build a collaborative web calendar app called Friend Group Social Calendar for coordinating social activities among friend groups.
+
+Core Features:
+
+Shared calendar accessible to all group members.
+
+Event creation with fields: title, date/time, location, description.
+
+Invite-link group formation with equal admin rights for all members.
+
+Notifications: Automated email + browser push reminders sent 1 hour before events.
+
+Authentication: Social login via Google, Apple, and Facebook.
+
+User Flow:
+
+User signs up/signs in via social login.
+
+User creates a new group calendar or joins via an invite link.
+
+All group members can add, edit, and view events.
+
+System automatically sends reminders 1 hour before events.
+
+Firebase Tools:
+
+Firebase Auth (Google/Apple/Facebook login)
+
+Firestore (store calendar events, user data, group memberships)
+
+Cloud Functions (send notifications, handle calendar operations)
+
+Firebase Hosting (deploy app)
+
+Vue.js + VueFire frontend
+
+(Future expansion) Firebase Cloud Messaging for push notifications
+
+Design:
+
+Aesthetic: Minimal, clean productivity tool with friendly “Care Bear” pastel color scheme.
+
+Layout: Simple, intuitive calendar interface with event cards.
+
+Goal: Ensure friends consistently remember and attend their planned events.
+
+
+============================
+
+Would you like me to make this more technical and structured like a spec (with Firestore schema, function triggers, etc.), or keep it in this natural language app-generation style for Firebase Studio?
+
+============================
+
+YES
+
+============================
+
+Got it 👍 I’ll expand the Firebase Studio prompt into a more technical, spec-like format including suggested Firestore schema, Cloud Function triggers, and overall architecture. That way Firebase Studio has clear guidance to scaffold the app.
+
+Firebase Studio App Prompt
+
+Build a web app called Friend Group Social Calendar that allows friend groups to collaboratively manage social events and receive reminders.
+
+Core Requirements
+
+Shared calendar for each group.
+
+Event creation: title, date/time, location, description.
+
+Group formation via invite link.
+
+Equal permissions: all group members can add/edit/delete events.
+
+Reminders: automatic notifications (email + browser push) sent 1 hour before events.
+
+Authentication: Social login (Google, Apple, Facebook).
+
+Technology Stack
+
+Frontend: Vue.js + VueFire
+
+Backend: Firebase (Auth, Firestore, Functions, Hosting)
+
+Notifications: Firebase Cloud Functions + Email API + Browser push (Firebase Cloud Messaging future)
+
+Firestore Schema
+/users/{userId}
+  - name: string
+  - email: string
+  - authProvider: string
+  - groups: [groupId]
+
+/groups/{groupId}
+  - name: string
+  - inviteLink: string
+  - members: [userId]
+
+/groups/{groupId}/events/{eventId}
+  - title: string
+  - description: string
+  - location: string
+  - startTime: timestamp
+  - createdBy: userId
+  - createdAt: timestamp
+
+Cloud Functions
+
+onEventCreate(eventId)
+
+Schedule a reminder 1 hour before startTime.
+
+Send email + browser push notification to all group members.
+
+onUserJoinGroup(groupId, userId)
+
+Add user to group’s members array.
+
+generateInviteLink(groupId)
+
+Create and return unique invite URL.
+
+Authentication
+
+Firebase Auth with Google, Apple, Facebook.
+
+On first login, create /users/{userId} doc with profile info.
+
+Hosting
+
+Firebase Hosting to serve Vue.js frontend.
+
+Design
+
+Clean, minimal productivity tool vibe.
+
+Pastel “Care Bear” color scheme.
+
+Simple calendar layout with event cards.
+
+=======================================
+
+Would you like me to also include a step-by-step build outline for Firebase Studio (e.g. “Create Firestore collections → Configure Auth → Add Cloud Functions → Deploy Hosting”), so it can act like a checklist?
+
+=======================================
+
+YES
+
+=======================================
+
+Firebase Studio Build Outline
+1. Project Setup
+
+ Create a new Firebase project named Friend Group Social Calendar.
+
+ Enable Firebase Hosting for Vue.js frontend.
+
+ Install Vue.js + VueFire.
+
+2. Authentication
+
+ Enable Firebase Auth providers:
+
+Google
+
+Apple
+
+Facebook
+
+ On first login, create a new document in /users/{userId} with:
+
+{
+  "name": "string",
+  "email": "string",
+  "authProvider": "google|apple|facebook",
+  "groups": []
+}
+
+3. Firestore Setup
+
+Create the following collections:
+
+/users/{userId}
+
+Stores profile info + group memberships.
+
+/groups/{groupId}
+
+{
+  "name": "string",
+  "inviteLink": "string",
+  "members": ["userId1", "userId2", ...]
+}
+
+
+/groups/{groupId}/events/{eventId}
+
+{
+  "title": "string",
+  "description": "string",
+  "location": "string",
+  "startTime": "timestamp",
+  "createdBy": "userId",
+  "createdAt": "timestamp"
+}
+
+4. Cloud Functions
+
+ onEventCreate(eventId)
+
+Trigger when a new event is created.
+
+Schedule notification for 1 hour before startTime.
+
+Send email + browser push to all group members.
+
+ generateInviteLink(groupId)
+
+Cloud Function to generate unique invite URLs.
+
+Store in groups/{groupId}.inviteLink.
+
+ onUserJoinGroup(groupId, userId)
+
+Add user to members array.
+
+Update /users/{userId}.groups.
+
+5. Notifications
+
+ Use Cloud Functions + Email API (e.g., SendGrid, Firebase Extensions).
+
+ Enable browser push notifications (Firebase Cloud Messaging).
+
+ Configure 1-hour reminder scheduling with Cloud Scheduler.
+
+6. Frontend (Vue.js + VueFire)
+
+ Login Screen → Social auth buttons.
+
+ Dashboard → List of groups + option to create/join via invite link.
+
+ Group Calendar View → Shared calendar UI with events.
+
+ Event Creation Modal → Add/edit event fields (title, time, location, description).
+
+ Notifications Panel → Display upcoming events.
+
+7. Design & Styling
+
+ Minimal, clean productivity layout.
+
+ Pastel Care Bear color scheme.
+
+ Rounded buttons + event cards.
+
+ Responsive design (desktop + mobile).
+
+8. Deployment
+
+ Deploy backend to Firebase Functions.
+
+ Deploy frontend with Firebase Hosting.
+
+ Test:
+
+Create group → Invite members → Add events → Check notifications.
+
+=================================
+
+Would you like me to also create a ready-to-paste JSON schema/config file that you can import into Firebase Studio directly to scaffold the Firestore structure?
+
+=================================
+
+YES
+
+=================================
+
