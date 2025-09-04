@@ -1,0 +1,3 @@
+Product: Care Bear Calendar
+Idea: A simple calendar web app that has support for multiple users, support for calendar sharing and standard calendar functionality
+
