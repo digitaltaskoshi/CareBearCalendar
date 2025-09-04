@@ -1,0 +1,31 @@
+Product Requirements Prompt: Friend Group Social Calendar
+Core Concept: A collaborative web calendar app designed for friend groups to coordinate social activities and prevent double-booking/forgotten plans.
+Target User: Friend groups planning social activities together
+Key Problem: People forgetting about plans or double-booking themselves despite group coordination
+Core Features:
+
+Shared calendar where all group members can view and create events
+Event creation with basics: title, date/time, location, description
+Invite-link based group formation with equal admin rights for all members
+Automated 1-hour email/browser push reminders for all events
+Social authentication (Google/Apple/Facebook login)
+
+User Flow:
+
+User creates account via social login
+Creates new group calendar or joins via invite link
+Group members can freely add/edit/view events
+System automatically sends reminders 1 hour before events
+All members receive notifications via email + browser push
+
+Technical Stack:
+
+Firebase Auth (Google/email social login)
+Firestore (calendar events, user data, group memberships)
+Cloud Functions (notification logic, calendar operations)
+Firebase Hosting
+Vue.js + VueFire
+Future: Mobile push notifications
+
+Design Direction: Minimal, clean productivity tool aesthetic with friendly Care Bear color scheme and motifs
+Success Metric: Friends actually show up to plans they've made together
