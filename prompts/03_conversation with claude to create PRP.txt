@@ -1,0 +1,225 @@
+Hey, I'll ask you a few quick questions to get a better sense of your product idea. Once we're done, I'll generate a Firebase Studio PRD prompt you can drop in to kick off your build.
+
+We'll start high-level and work our way into the features and flow. The goal is to clearly define the idea, user experience, and Firebase setup.
+
+No coding yet - just good planning!
+
+So, let's dive in! What's the core idea you want to build? Give me the elevator pitch version - what problem does it solve and for whom?
+
+====================
+
+Idea: A simple calendar web app that has support for multiple users, support for calendar sharing and standard calendar functionality
+
+====================
+
+Nice! A collaborative calendar app - that's a solid foundation with lots of potential directions.
+
+Let me dig into the "who" a bit more: When you picture people using this calendar app, what's the main scenario? Are we talking about:
+
+- Teams at work coordinating meetings and projects?
+- Families managing schedules and events?
+- Friend groups planning social activities?
+- Something else entirely?
+
+Understanding your primary user group will help us nail down the right features and sharing model.
+
+====================
+
+friends managing social activites.
+
+====================
+
+Perfect! Friend groups have some really interesting dynamics when it comes to shared planning.
+
+So when you imagine your friends using this app, what's the main pain point you're solving? Is it:
+
+- The endless group chat threads trying to find a time that works for everyone?
+- People forgetting about plans or double-booking themselves?
+- Having to coordinate across different calendar apps (Google, Apple, Outlook)?
+- Something about discovering and suggesting activities?
+
+What's the "ugh, this is so annoying" moment that made you think "there has to be a better way"?
+
+====================
+
+People forgetting about plans or double-booking themselves
+
+====================
+
+Ah, the classic "wait, I thought we were meeting at 7, not 6!" and "oh shoot, I already have something that night" situations. Super relatable!
+
+So here's my next question: When someone adds an event to a shared friend group calendar, what should happen to make sure everyone actually remembers and shows up?
+
+Are you thinking:
+- Just having it visible on everyone's calendar is enough?
+- Push notifications/reminders at certain times?
+- Some kind of RSVP or confirmation system?
+- Integration with their personal calendars (Google, Apple, etc.)?
+
+What's your take on the best way to bridge that gap between "it's on the calendar" and "everyone actually knows about it"?
+
+====================
+
+Push notifications/reminders at certain times
+
+====================
+
+Smart! Notifications are definitely key for cutting through the noise of daily life.
+
+Let's get specific about the reminder flow: When someone creates a group event (like "Movie night Friday 8pm"), what reminder schedule makes sense?
+
+Are you picturing something like:
+- Standard timing (24 hours before, 1 hour before)?
+- Custom reminders that the event creator can set?
+- Different reminders for different types of events?
+- Or maybe everyone can set their own personal reminder preferences?
+
+And just to clarify - are these push notifications going to phones, browser notifications, or both? Want to make sure we're thinking about the right technical setup from the start!
+
+====================
+
+Standard timing (1 hour before)
+
+====================
+
+Perfect - keeping it simple with 1-hour reminders. That strikes a good balance between giving people a heads up without being annoying.
+
+Now let's talk about the sharing model. When you say "calendar sharing" for friend groups, I'm picturing a few different ways this could work:
+
+- One shared calendar that everyone can see and add events to (like a group Google calendar)
+- Individual calendars that friends can share/overlay with each other
+- Friend groups where you create "circles" and share certain events with specific circles
+
+Which approach feels right for how you and your friends actually coordinate plans? Are you usually planning as one tight group, or more like overlapping smaller groups within your broader friend circle?
+
+====================
+
+One shared calendar that everyone can see and add events to
+
+====================
+
+Got it! So we're talking about a true collaborative calendar where everyone in the friend group has equal access to view and create events. That's clean and straightforward.
+
+Here's where I want to dig into the user flow a bit: When someone wants to create a new event on the shared calendar, what information should they be able to include?
+
+I'm thinking basics like:
+- Event title and time/date
+- Location
+- Description/notes
+
+But what about things like:
+- Who's invited/expected to attend from the group?
+- Event categories (dinner, movies, sports, etc.)?
+- Anything else that would help your friend group stay organized?
+
+What details matter most when you're looking at an event someone else created?
+
+====================
+
+just the basics
+
+====================
+
+Awesome - sometimes the basics are exactly what you need. Event title, time/date, location, description. Clean and simple.
+
+Let me shift gears to the user management side: How do you envision people joining these shared calendars? Are you thinking:
+
+- Someone creates a group calendar and sends invite links to friends?
+- People can search and request to join existing friend groups?
+- More of a "create account, then friends can find and add you" approach?
+
+And related question - should one person "own" each shared calendar, or is it more like everyone has equal admin rights once they're in the group?
+
+Just trying to understand the social mechanics of how these friend groups form and function!
+
+====================
+
+Someone creates a group calendar and sends invite links to friends. everyone has equal admin rights once they're in the group.
+
+====================
+
+Perfect! That's a really user-friendly approach - invite links are super easy to share, and equal admin rights keeps things democratic.
+
+Now let's talk about the technical foundation. Since we're building this in Firebase, we'll need to think about authentication and data structure.
+
+For user accounts, are you leaning toward:
+- Email/password signup (simple but requires people to create yet another account)
+- Social login with Google/Apple/Facebook (faster signup, leverages existing accounts)
+- Or maybe even allow some events to be viewed without creating an account at all?
+
+I ask because the authentication choice affects how we handle the invite flow and whether people can jump in quickly or need to go through a full signup process first.
+
+What feels right for the kind of friction you want (or don't want) when friends are joining?
+
+====================
+
+Social login with Google/Apple/Facebook
+
+====================
+
+Smart choice! Social login removes a ton of friction - people can jump into a shared calendar invite without the whole "create another password" dance.
+
+Let me ask about one more key piece: notifications delivery. You mentioned 1-hour reminders, and with social login we'll have access to email addresses easily.
+
+For those push notifications, are you thinking:
+- Email notifications (works everywhere, but might get buried in inboxes)
+- Browser push notifications (great for people using the web app)
+- Eventually mobile push notifications if you build apps later
+- Or starting with email and browser push, then seeing what people actually want?
+
+This affects which Firebase services we'll want to set up (like Cloud Functions for emails, FCM for push notifications, etc.). What feels like the right starting point for making sure those reminders actually reach people?
+
+====================
+
+Email notifications, Browser push notifications, and Eventually mobile push notifications
+
+====================
+
+Excellent - that's a really comprehensive notification strategy that'll actually reach people! Starting with email and browser push gives great coverage, and leaves the door open for mobile later.
+
+Alright, I think I've got a solid picture of your vision. Let me just double-check one last piece: are there any deal-breaker features or "must-haves" that we haven't touched on yet?
+
+And on the flip side - any features that you specifically DON'T want in the first version? Sometimes it's just as important to know what to leave out to keep things focused.
+
+Once I get your thoughts on that, I'll put together that Firebase Studio PRD prompt for you!
+
+====================
+
+Required Features include:
+Firebase Auth (Google/email)
+Firestore (daily logs, user data)
+Any Calendar logic via Cloud Functions
+Basic UI with log input + dashboard
+Stack: Firebase Hosting + Auth + Firestore + Cloud Functions
+Framework: Vue and maybe VueFire
+Design vibe: Minimal and clean, like a productivity tool, but friendly with a 'Care Bear' colour scheme and motif
+
+====================
+
+Perfect! I love the Care Bear color scheme twist - that's going to make this calendar feel way more fun and approachable than typical productivity tools.
+
+One quick clarification before I write up your PRD prompt: when you mentioned "daily logs" in the Firestore requirements, are you thinking about logging when people interact with events (like who viewed what, when reminders were sent, etc.) or something else? 
+
+Just want to make sure I capture that correctly in the technical requirements since it wasn't something we discussed in the main feature flow.
+
+Once I get that detail, I'll have everything I need to put together a solid Firebase Studio prompt that captures your collaborative calendar with Care Bear vibes!
+
+====================
+
+instead of daily logs, use Firestore to store the calendar items
+
+====================
+
+Perfect! That makes total sense - Firestore to store all the calendar events, user data, and group memberships. Got it.
+Alright, here's your Firebase Studio PRD prompt:
+
+
+
+
+
+
+
+
+
+
+
