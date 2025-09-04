@@ -2,7 +2,6 @@
 - use Clause to create a PRP
 - give PRP to ChatGPT and ask for Firebase Studio prompt
 - give prompt to Firebase Studio, it creates the app
-- 
 ------------------------
 - changes: provide image for landing page; file not available;
 - found image on web and provided URL to be added
@@ -21,6 +20,39 @@
 - I informed the AI about the db and told it to config access for the project
 - AI brought the project config settings in
 ------------------------
+- I manually created authentication for the project for Google sign in
+- I told the AI and it added the Authentication Flow to the project
+- tried to login, but popup windows are blocked...
+- login failed because of authentication redirect url was wrong within the dev project
+  vs deployed version
+------------------------
+- deployed/published app 
+- published URL was different than the AI expected
+- I updated the authorized URL in the Authentication | Settings of the project
+- authentication works!
+------------------------
+- added continue as guest for login
+------------------------
+- calendar items not saved to DB. instructed AI to do this.
+- it did this but app failed with an error... it tried to fix it, successfully
+------------------------
+- calander groups were hard coded. I asked AI to implement save/retrieve with also saving a default group for a user
+- i asked AI to extend the schema and add more fields to groups
+- I asked AI to extend the schema and add more fields to users, with default values tool
+------------------------
+- add new group didn't work... I asked AI to add a dialog box to fix this
+- AI created all the required func and it works
+- Asked AI to provide a random placeholder name when adding a new group, this worked
+- asked AI to provide random themed color for the events
+- asked AI to change forecolor on the events
+------------------------
+- asked AI to get the Join Group function working... it did!
+
+
+
+
+
+
 
 
 
