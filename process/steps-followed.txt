@@ -1,0 +1,36 @@
+- use Claude to ask questions defining product
+- use Clause to create a PRP
+- give PRP to ChatGPT and ask for Firebase Studio prompt
+- give prompt to Firebase Studio, it creates the app
+- 
+------------------------
+- changes: provide image for landing page; file not available;
+- found image on web and provided URL to be added
+- cal items are created, but not saved
+- cal items don't change when switching groups
+- clicking on any cal item shows properties of the last create item
+----------------------
+- app had not created a firebase config and firebase project 
+- both needed to access services like FireStore
+- told the AI to do create new project and config
+- failed to create the backend project
+-----------------------
+- moved to firebase project, asked gemini to evaluate the schema Claude had created
+- it provided step-by-step how to create the db
+- I created the schema manually
+- I informed the AI about the db and told it to config access for the project
+- AI brought the project config settings in
+------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
