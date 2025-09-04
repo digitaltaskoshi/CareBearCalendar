@@ -1,0 +1,51 @@
+
+--------------------------------------
+update schemas
+--------------------------------------
+make sure that calander items are being read from and written to the configured firestore db.
+
+if a user has no groups stored in the database, create a new group named "Care Bear Central" and save it for them in the database
+
+when you create a group, the schema must include these fields: createdAt: timestamp and createdBy, which stores the userID of the user who created the group
+
+when you create a user, the schema must include these fields: createdAt: timestamp, authProvider: string, which stores a string describing the type of authentication used by the user, name: string, which stores the user name if we know it or 'guest user' if we dont, email: string, which stores the email address if we know it or 'unknown@carebear.com' if we don't
+
+
+--------------------------------------
+add Create Group functionality
+--------------------------------------
+when I click the "create a group" button it redirects to a dead url. clicking the button should bring up a dialog box to ask user for a new for the new group, with an OK and Cancel buttons on the dialog. If the user adds a new name and clicks OK, then create a new group with the name from the dialog box, add the group to the collection, save the group into the db and then switch to that group in the calender.
+
+
+--------------------------------------
+change default placeholder on Input 
+--------------------------------------
+on the create-group-dailog.tsx replace the current Input placeholder 
+value with a single random selection from the following list:
+Cheer Bear, Christmas Wishes Bear, Daydream Bear, Birthday Bear, Best Friend Bear, Destiny Bear, Funshine Bear, Harmony Bear, Heartstrong Bear
+
+
+--------------------------------------
+change color scheme
+--------------------------------------
+each event should have a background color selected at random from a list 
+of (6) colors that go along with the care bear theme of the app
+
+the events should not have white text, they are too hard to see. 
+change the font color to something darker
+
+
+--------------------------------------
+add Join a Group functionality
+--------------------------------------
+when a user clicks on "join a group", show a dialog with a textbox labeled 
+'Enter a Group ID'. There will also be an ok and cancel button. If the user 
+enters a value in the group id and clicks the ok button, then close the 
+dialog box and perform a query on the db to see if there is a group with 
+that same groupid. if the group exists, then add the calendar groupid to 
+the user's groups array. then update the app to show the new group in the 
+list and select that group for display
+
+
+
+
