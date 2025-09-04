@@ -1,0 +1,79 @@
+Firebase Studio App Prompt
+
+Build a web app called 'Care Bear Calendar' that allows friend groups to collaboratively manage social events and receive reminders.
+
+Core Requirements
+
+Shared calendar for each group.
+
+Event creation: title, date/time, location, description.
+
+Group formation via invite link.
+
+Equal permissions: all group members can add/edit/delete events.
+
+Reminders: automatic notifications (email + browser push) sent 1 hour before events.
+
+Authentication: Social login (Google, Apple, Facebook).
+
+Technology Stack
+
+Frontend: Vue.js + VueFire
+
+Backend: Firebase (Auth, Firestore, Functions, Hosting)
+
+Notifications: Firebase Cloud Functions + Email API + Browser push (Firebase Cloud Messaging future)
+
+Firestore Schema
+/users/{userId}
+  - name: string
+  - email: string
+  - authProvider: string
+  - groups: [groupId]
+
+/groups/{groupId}
+  - name: string
+  - inviteLink: string
+  - members: [userId]
+
+/groups/{groupId}/events/{eventId}
+  - title: string
+  - description: string
+  - location: string
+  - startTime: timestamp
+  - createdBy: userId
+  - createdAt: timestamp
+
+Cloud Functions
+
+onEventCreate(eventId)
+
+Schedule a reminder 1 hour before startTime.
+
+Send email + browser push notification to all group members.
+
+onUserJoinGroup(groupId, userId)
+
+Add user to group’s members array.
+
+generateInviteLink(groupId)
+
+Create and return unique invite URL.
+
+Authentication
+
+Firebase Auth with Google, Apple, Facebook.
+
+On first login, create /users/{userId} doc with profile info.
+
+Hosting
+
+Firebase Hosting to serve Vue.js frontend.
+
+Design
+
+Clean, minimal productivity tool vibe.
+
+Pastel “Care Bear” color scheme.
+
+Simple calendar layout with event cards.
